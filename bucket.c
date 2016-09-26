@@ -1,83 +1,36 @@
-/*
-
- * C Program to Sort Array using Bucket Sort
-
- */
-
 #include <stdio.h>
 
-
-
-/* Function for bucket sort */
-
 void Bucket_Sort(int array[], int n)
-
 {
-
     int i, j;
-
     int count[n];
 
-    for (i = 0; i < n; i++)
-
+    for (i = 0; i < n; i++){
         count[i] = 0;
+    }
 
-
-
-    for (i = 0; i < n; i++)
-
+    for (i = 0; i < n; i++){
         (count[array[i]])++;
+    }
 
-
-
-    for (i = 0, j = 0; i < n; i++)
-
-        for(; count[i] > 0; (count[i])--)
-
+    for (i = 0, j = 0; i < n; i++){
+        for(; count[i] > 0; (count[i])--){
             array[j++] = i;
-
+        }
+    }
 }
 
-/* End of Bucket_Sort() */
-
-
-
-/* The main() begins */
-
 int main()
-
 {
+    int array[1000001], i, num;
 
-    int array[100], i, num;
-
-
-
-    printf("Enter the size of array : ");
-
+    printf("Entre o Tamanho do Vetor: ");
     scanf("%d", &num);
 
-    printf("Enter the %d elements to be sorted:\n",num);
-
-    for (i = 0; i < num; i++)
-
-        scanf("%d", &array[i]);
-
-    printf("\nThe array of elements before sorting : \n");
-
-    for (i = 0; i < num; i++)
-
-        printf("%d ", array[i]);
-
-    printf("\nThe array of elements after sorting : \n");
+    for (i = 0; i < num; i++){
+        array[i] = i ; // modifique aqui pra algum rand() ou outra coisa para fazewr o teste. o I ali é só pra ter algo
+    }
 
     Bucket_Sort(array, num);
-
-    for (i = 0; i < num; i++)
-
-        printf("%d ", array[i]);
-
-    printf("\n");
-
     return 0;
-
 }
