@@ -3,19 +3,19 @@
 void Bucket_Sort(int array[], int n)
 {
     int i, j;
-    int count[n];
+    int count[n]; // Cria n buckets
 
     for (i = 0; i < n; i++){
-        count[i] = 0;
+        count[i] = 0; // Inicializa buckets
     }
 
     for (i = 0; i < n; i++){
-        (count[array[i]])++;
+        (count[array[i]])++; // Particiona buckets
     }
 
     for (i = 0, j = 0; i < n; i++){
         for(; count[i] > 0; (count[i])--){
-            array[j++] = i;
+            array[j++] = i; // Concatena buckets
         }
     }
 }
