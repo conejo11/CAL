@@ -31,6 +31,17 @@ int main()
         array[i] = i ; // modifique aqui pra algum rand() ou outra coisa para fazewr o teste. o I ali é só pra ter algo
     }
 
+    /*
+    for (i = 0; i < n; i++){
+        printf("%d",vet[i]);
+    }
+    */
     Bucket_Sort(array, num);
+    /*
+    printf("\n");
+    for (i = 0; i < n; i++){
+        printf("%d",vet[i]);
+    }
+    */
     return 0;
 }
