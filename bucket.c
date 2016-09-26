@@ -30,7 +30,6 @@ int main()
     for (i = 0; i < num; i++){
         array[i] = i ; // modifique aqui pra algum rand() ou outra coisa para fazewr o teste. o I ali é só pra ter algo
     }
-
     /*
     for (i = 0; i < n; i++){
         printf("%d",vet[i]);
