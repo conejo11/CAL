@@ -33,13 +33,13 @@ int main ()
 void insertionsort(int *number,int tam){
     int i,j,top;
     int chosen=0;
-        for(i=1;i<tam; i++){
-            chosen = number[i];
-            j=i-1;
-            while((j>=0)&&(chosen<number[j])){
-                number[j+1]=number[j];
-                j--;
-            }
-            number[j+1]=chosen;
+    for(i=1;i<tam; i++){
+        chosen = number[i];
+        j=i-1;
+        while((j>=0)&&(chosen<number[j])){
+            number[j+1]=number[j];
+            j--;
         }
+        number[j+1]=chosen;
+    }
 }
