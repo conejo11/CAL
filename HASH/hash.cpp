@@ -1,6 +1,3 @@
-/*
- * C++ Program to Implement Hash Tables with Linear Probing
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -13,7 +10,7 @@
 using namespace std;
 const int TABLE_SIZE = 5000;
 /*
- * HashNode Class Declaration
+ * classe que define o que é um nó hash
  */
 class HashNode
 {
@@ -27,25 +24,25 @@ class HashNode
     }
 };
 /*
-* DeletedNode Class Declaration
+* classe que define um nó vazio
 */
-class DeletedNode:public HashNode
+class EmptyNode:public HashNode
 {
   private:
-    static DeletedNode *entry;
-      DeletedNode():HashNode(-1, -1)
+    static EmptyNode *entry;
+      EmptyNode():HashNode(-1, -1)
         {}
   public:
-    static DeletedNode *getNode()
+    static EmptyNode *getNode()
     {
       if (entry == NULL)
-        entry = new DeletedNode();
+        entry = new EmptyNode();
       return entry;
     }
 };
-DeletedNode *DeletedNode::entry = NULL;
+EmptyNode *EmptyNode::entry = NULL;
 /*
- * HashMap Class Declaration
+ * Classe que define a tabla hash
  */
 class HashMap
 {
@@ -60,24 +57,15 @@ class HashMap
         htable[i] = NULL;
       }
     }
-    ~HashMap()
-    {
-      for (int i = 0; i < TABLE_SIZE; i++)
-        {
-          if (htable[i] != NULL && htable[i] != DeletedNode::getNode())
-            delete htable[i];
-        }
-      delete[] htable;
-    }
     /*
-    * Hash Function
+    * funçao hash
     */
     int HashFunc(int key)
       {
         return key % TABLE_SIZE;
       }
       /*
-      * Insert Element at a key
+      * Insere elemento na tabela hash
       */
       void Insert(int key, int value)
         {
@@ -85,12 +73,12 @@ class HashMap
           int init = -1;
           int deletedindex = -1;
           while (hash_val != init && (htable[hash_val]
-          == DeletedNode::getNode() || htable[hash_val]
+          == EmptyNode::getNode() || htable[hash_val]
           != NULL && htable[hash_val]->key != key))
           {
             if (init == -1)
               init = hash_val;
-            if (htable[hash_val] == DeletedNode::getNode())
+            if (htable[hash_val] == EmptyNode::getNode())
               deletedindex = hash_val;
             hash_val = HashFunc(hash_val + 1);
           }
@@ -103,7 +91,7 @@ class HashMap
             }
             if(init != hash_val)
             {
-              if (htable[hash_val] != DeletedNode::getNode())
+              if (htable[hash_val] != EmptyNode::getNode())
                 {
                   if (htable[hash_val] != NULL)
                     {
@@ -116,14 +104,14 @@ class HashMap
             }
         }
     /*
-    * Search Element at a key
+    * Procura a chave na tabela hash
     */
      int Search(int key)
      {
         int hash_val = HashFunc(key);
         int init = -1;
         while (hash_val != init && (htable[hash_val]
-        == DeletedNode::getNode() || htable[hash_val]
+        == EmptyNode::getNode() || htable[hash_val]
         != NULL && htable[hash_val]->key != key))
         {
           if (init == -1)
@@ -175,6 +163,7 @@ int main()
       if(i<5000) {fromChar = stoi(toChar,nullptr,10); i++;} // XUNXO NA CARA DURA, NO SHAME AT ALL, sem isso da um erro inexxxplicável
       //cout << toChar << endl;
       //cout << fromChar << endl;
+      //cout << 1 << endl;
       key = fromString;
       value = fromChar;
       hash.Insert(key,value);
@@ -188,7 +177,7 @@ int main()
 		cout << "Deu para abrir nao champz" << endl << endl;
 	}
 
-  //Search in the hash table
+  //Procurando na tabela
   if (pesquisa.is_open())
   {
     while (pesquisa.good())
